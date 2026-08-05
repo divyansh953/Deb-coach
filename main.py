@@ -14,6 +14,7 @@ from agents.weekend_agent import weekend_agent_node
 from core.network_utils import clear_broken_local_proxies
 from core.topic_utils import topic_name
 from delivery.telegram import send_digest
+from delivery.website import send_to_website
 from evals.rag.fixtures import RETRIEVAL_EVAL_CASES
 from evals.rag.real_trace_eval import evaluate_recent_traces
 from evals.rag.retrieval_eval import evaluate_query_plan, evaluate_structured_evidence
@@ -162,6 +163,12 @@ def run_daily(topic_override: str | None = None):
     print(f"Enriched context chars: {len(result['enriched_context'])}")
     print(f"Final doc chars: {len(result['final_doc'])}")
     send_digest(result["final_doc"])
+    # Best-effort mirror to the debate website; a site outage must never
+    # break the Telegram delivery that already succeeded above.
+    try:
+        send_to_website(result["final_doc"])
+    except Exception as exc:
+        print(f"[Website] Delivery skipped: {exc}")
 
 
 def run_summarize_smoke():
