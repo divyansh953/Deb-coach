@@ -106,6 +106,8 @@ jobs:
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          WEBSITE_DIGEST_URL: ${{ secrets.WEBSITE_DIGEST_URL }}
+          WEBSITE_DIGEST_SECRET: ${{ secrets.WEBSITE_DIGEST_SECRET }}
           DEV_MODE: "false"
         run: python main.py --mode ${{ steps.mode.outputs.mode }}
 
