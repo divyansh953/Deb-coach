@@ -285,10 +285,11 @@ def _embed_with_backoff(call):
             if "PERMISSION_DENIED" in msg or "blocked" in msg.lower():
                 print("[Ingest] embedding permission blocked, skipping this store build")
                 return None
-            if "RESOURCE_EXHAUSTED" not in msg and "429" not in msg:
+            if "RESOURCE_EXHAUSTED" not in msg and "429" not in msg and "Quota exceeded" not in msg:
                 raise
-            if attempt == EMBED_MAX_RETRIES - 1:
-                raise
+            if attempt == EMBED_MAX_RETRIES - 1 or "PerDay" in msg or "daily" in msg.lower():
+                print(f"[Ingest] Free tier embedding quota limit reached. Saving store built so far.")
+                return None
             print(f"[Ingest] embedding quota hit, sleeping {delay}s (attempt {attempt + 1})")
             time.sleep(delay)
             delay = min(delay * 2, 300)
