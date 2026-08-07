@@ -49,6 +49,66 @@
     {
       "url": "https://www.bbc.com/news",
       "site_type": "news"
+    },
+    {
+      "url": "https://www.foreignaffairs.com/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://foreignpolicy.com/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://thediplomat.com/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://www.cfr.org/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://www.csis.org/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://carnegieendowment.org/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://www.brookings.edu/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://www.crisisgroup.org/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://www.rand.org/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://www.sipri.org/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://plato.stanford.edu/",
+      "site_type": "debate_theory"
+    },
+    {
+      "url": "https://www.britannica.com/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://concepts.sagepub.com/",
+      "site_type": "debate_theory"
+    },
+    {
+      "url": "https://www.investopedia.com/",
+      "site_type": "news"
+    },
+    {
+      "url": "https://www.worldbank.org/",
+      "site_type": "news"
     }
   ],
   "youtube": [
