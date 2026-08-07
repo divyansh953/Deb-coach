@@ -260,17 +260,24 @@ EMBED_MAX_RETRIES = 6
 
 def _faiss_from_documents_batched(documents, embedding, batch_size=EMBED_BATCH_SIZE):
     """Build a FAISS index in batches with quota-aware backoff."""
+    if not documents:
+        return None
+
     head = documents[:batch_size]
     tail = documents[batch_size:]
 
     store = _embed_with_backoff(
         lambda: FAISS.from_documents(documents=head, embedding=embedding)
     )
+    if store is None:
+        return None
 
     while tail:
         batch = tail[:batch_size]
         tail = tail[batch_size:]
-        _embed_with_backoff(lambda: store.add_documents(batch))
+        added = _embed_with_backoff(lambda: store.add_documents(batch))
+        if added is None:
+            break
 
     return store
 
