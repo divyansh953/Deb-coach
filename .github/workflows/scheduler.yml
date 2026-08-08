@@ -35,13 +35,13 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.11"
 
@@ -51,7 +51,7 @@ jobs:
       # Vector store cache: rebuild only when the corpus or extractor changes.
       - name: Restore FAISS vector store cache
         id: faiss-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: faiss
           key: faiss-v1-${{ hashFiles('rag/sources.json', 'rag/wpm_extractor.py', 'rag/chunking_strategy.py') }}
@@ -70,7 +70,7 @@ jobs:
       # a daily-running scheduler keeps the cache permanently warm.
       - name: Restore weekly_log state
         id: state-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: memory/weekly_log.json
           # Use a sliding key based on the calendar week so each Monday gets
