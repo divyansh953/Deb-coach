@@ -33,7 +33,7 @@ try:
     from langchain_core.documents import Document
 except ImportError:  # pragma: no cover - exercised in bootstrap environments
     try:
-        from langchain.schema import Document
+        from langchain.schema import Document  # type: ignore
     except ImportError:
         Document = None
 

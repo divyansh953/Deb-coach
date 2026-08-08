@@ -20,9 +20,12 @@ except ImportError:  # pragma: no cover - exercised in bootstrap environments
     FAISS = None
 
 try:
-    from langchain_community.vectorstores import Chroma
+    from langchain_chroma import Chroma
 except ImportError:  # pragma: no cover - exercised in bootstrap environments
-    Chroma = None
+    try:
+        from langchain_community.vectorstores import Chroma
+    except ImportError:
+        Chroma = None
 
 from rag.context_packer import pack_retrieved_context, reorder_for_long_context
 from rag.document_index import load_document_summary_index, select_document_ids
